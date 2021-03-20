@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d9dfe0"
+    tools:context=".VisitorPage"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+        <Button
+            android:id="@+id/searchbyname"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:padding="16dp"
+            android:text="Search by name"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:textSize="24sp">
+
+        </Button>
+        <Button
+            android:id="@+id/searchbycategory"
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:padding="16dp"
+            android:text="Ethnobotanical walk"
+            android:textSize="24sp">
+
+        </Button>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    tools:context=".MainActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ImageButton
-        android:id="@+id/btn_paraecologist"
-        style="@android:style/Widget.ImageButton"
-        android:layout_width="183dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="175dp"
-        android:layout_marginBottom="465dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225"
-        app:srcCompat="@drawable/paraecologist"></ImageButton>
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
 
+        <ImageButton
+            android:id="@+id/btn_paraecologist"
+            style="@android:style/Widget.ImageButton"
+            android:layout_width="183dp"
+            android:layout_height="91dp"
+            android:layout_marginBottom="40dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/paraecologist">
+        </ImageButton>
 
-    <Button
+        <Button
         android:id="@+id/btn_visitor"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="95dp"
         android:layout_height="52dp"
         android:background="#FFFFFF"
         android:backgroundTint="#286E2B"
-        android:text="VISITOR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_paraecologist"
-        app:layout_constraintVertical_bias="0.381" />
+        android:text="VISITOR">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>
