@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         ethnographer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, Second_screen.class));
             }
         });
     }

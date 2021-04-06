@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Ethnoprototype">
         <activity android:name=".EthnobotanicalWalk"></activity>
         <activity android:name=".SearchByName" />
+        <activity android:name=".UncategorisedItemsActivity"/>
         <activity android:name=".VisitorPage" />
         <activity android:name=".Second_screen" />
         <activity android:name=".vid_categorisaton" />

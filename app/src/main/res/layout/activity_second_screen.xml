@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    tools:context=".Second_screen"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Second_screen">
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="24dp"
-        android:gravity="center">
-        <ImageButton
-            android:id="@+id/btn_camera"
-            android:layout_width="200dp"
-            android:layout_height="120dp"
-            android:layout_marginRight="30dp"
-            android:backgroundTint="#FFFFFF"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/images" />
+
+    <ImageButton
+        android:id="@+id/btn_camera"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/images" />
+
 
     <ImageButton
         android:id="@+id/btn_video"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="30dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_camera"
         app:srcCompat="@drawable/video" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/layout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="24dp"
-        android:gravity="center"
-        android:layout_below="@id/layout">
     <ImageButton
         android:id="@+id/btn_categories"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#FFFFFF"
         android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_video"
         app:srcCompat="@drawable/rituals" />
-    </LinearLayout>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
