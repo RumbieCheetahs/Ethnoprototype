@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d9dfe0"
-    tools:context=".VisitorPage"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".VisitorPage">
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
-        <Button
-            android:id="@+id/searchbyname"
-            android:layout_width="400dp"
-            android:layout_height="100dp"
-            android:padding="16dp"
-            android:text="Search by name"
-            android:drawableLeft="@android:drawable/ic_menu_search"
-            android:textSize="24sp">
 
-        </Button>
-        <Button
-            android:id="@+id/searchbycategory"
-            android:layout_width="400dp"
-            android:layout_height="100dp"
-            android:padding="16dp"
-            android:text="Ethnobotanical walk"
-            android:textSize="24sp">
+    <Button
+        android:id="@+id/searchbyname"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:padding="16dp"
+        android:text="@string/search_by_name"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/searchbycategory"
+        app:layout_constraintEnd_toEndOf="@+id/searchbycategory"
+        app:layout_constraintStart_toStartOf="@+id/searchbycategory"
+        app:layout_constraintTop_toTopOf="parent">
 
-        </Button>
-    </LinearLayout>
-</RelativeLayout>
+    </Button>
+
+    <Button
+        android:id="@+id/searchbycategory"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="507dp"
+        android:padding="16dp"
+        android:text="@string/search_by_category"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchbyname">
+
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
