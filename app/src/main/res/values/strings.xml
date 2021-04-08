@@ -3,4 +3,6 @@
     <string name="search_by_name">Search by name</string>
     <string name="search_by_category">Ethnobotanical walk</string>
     <string name="text_visitor">VISITOR</string>
+    <string name="list_content_value">Date and Time</string>
+    <string name="content_description">Description</string>
 </resources>
