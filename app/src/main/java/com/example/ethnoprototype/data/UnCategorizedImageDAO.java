@@ -21,7 +21,7 @@ public interface UnCategorizedImageDAO {
 //    User findByName(String first, String last);
 
     @Insert
-    void insert(UnCategorizedImage image);
+    void insertAll(UnCategorizedImage... image);
 
     @Delete
     void delete(UnCategorizedImage image);

@@ -1,11 +1,11 @@
 package com.example.ethnoprototype;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -13,16 +13,25 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ethnoprototype.data.AppDatabase;
+import com.example.ethnoprototype.data.UnCategorizedImage;
+import com.example.ethnoprototype.data.UnCategorizedVideo;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Second_screen extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_VIDEO_CAPTURE = 2;
-    String currentPhotoPath;
+    String currentPath;
+    LocationService locationService;
     ImageButton btnAssignCategories, btnCaptureImage, btnCaptureVideo;
+
+    AppDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +61,9 @@ public class Second_screen extends AppCompatActivity {
                 dispatchTakeVideoIntent();
             }
         });
+        locationService = new LocationService(Second_screen.this);
+        db = AppDatabase.getAppDatabase(Second_screen.this);
+
     }
 
     private void dispatchTakePictureIntent() {
@@ -73,6 +85,7 @@ public class Second_screen extends AppCompatActivity {
                         "com.example.ethnoprototype",
                         photoFile);
                 Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
+
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
@@ -95,7 +108,7 @@ public class Second_screen extends AppCompatActivity {
                         "com.example.ethnoprototype",
                         videoFile);
                 takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoURI);
-                Toast.makeText(getBaseContext(), "URI : "+ videoURI.toString(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(), "URI : "+ videoURI.toString(),Toast.LENGTH_LONG).show();
                 startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
             }
         }
@@ -103,12 +116,47 @@ public class Second_screen extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
-            Uri videoUri = data.getData();
-            Toast.makeText(getBaseContext(), "URI " + videoUri.getPath().toString(), Toast.LENGTH_LONG).show();
-        }
+        if (resultCode == RESULT_OK) {
 
+            double[] coordinates = getLocation();
+
+            if (coordinates != null) {
+                double latitude = coordinates[0];
+                double longitude = coordinates[1];
+                if (requestCode == REQUEST_VIDEO_CAPTURE) {
+                 //   Uri videoUri = data.getData();
+                    Toast.makeText(getBaseContext(), "Video URI " + currentPath, Toast.LENGTH_LONG).show();
+                    UnCategorizedVideo video = new UnCategorizedVideo();
+                    video.path = currentPath;
+                    video.latitude = latitude;
+                    video.longitude = longitude;
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        video.date = LocalDate.now().toString();
+                        video.time = LocalTime.now().toString();
+                    }
+
+                    db.videoDAO().insertAll(video);
+
+                } else {
+                    Uri imageUri = data.getData();
+                    Toast.makeText(getBaseContext(), "Image URI " + imageUri.getPath().toString(), Toast.LENGTH_LONG).show();
+                    UnCategorizedImage image = new UnCategorizedImage();
+                    image.imagePath = imageUri.getPath();
+                    image.imageLatitude = latitude;
+                    image.imageLongitude = longitude;
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        image.imageDate = LocalDate.now().toString();
+                        image.imageTime = LocalTime.now().toString();
+                    }
+
+                    db.imageDAO().insertAll(image);
+                }
+            }
+            Toast.makeText(getApplicationContext(), " Resource saved but with no coordinates", Toast.LENGTH_LONG).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private File createImageFile() throws IOException {
@@ -123,13 +171,13 @@ public class Second_screen extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
+        currentPath = image.getAbsolutePath();
         return image;
     }
 
     private File createVideoFile() throws IOException{
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        String imageFileName = "MP4_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_MOVIES);
         File video = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -138,7 +186,22 @@ public class Second_screen extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = video.getAbsolutePath();
+        currentPath = video.getAbsolutePath();
         return video;
+    }
+
+    private double[] getLocation(){
+        if (locationService.canGetLocation()) {
+            double longitude = locationService.getLongitude();
+            double latitude = locationService.getLatitude();
+            double[] location = new double[]{latitude,longitude};
+            Toast.makeText(getApplicationContext(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
+            return location;
+        } else {
+
+            locationService.showSettingsAlert();
+            return null;
+        }
+
     }
 }

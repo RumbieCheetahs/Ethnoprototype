@@ -21,4 +21,10 @@ public class UnCategorizedImage {
         this.imageDate = imageDate;
         this.imageTime = imageTime;
     }
+
+    public UnCategorizedImage(){
+
+    }
+
+
 }

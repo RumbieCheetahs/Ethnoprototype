@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ethnoprototype.data.UnCategorizedVideo;
 import com.example.ethnoprototype.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -18,11 +19,21 @@ import java.util.List;
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-
-    public MyItemRecyclerViewAdapter(List<DummyItem> items) {
-        mValues = items;
+    public interface OnItemClickListener{
+        public void onItemClick(UnCategorizedVideo video);
     }
+
+    private OnItemClickListener listener ;
+
+
+    private final List<UnCategorizedVideo> mValues;
+
+    public MyItemRecyclerViewAdapter(List<UnCategorizedVideo> items, OnItemClickListener listener) {
+        mValues = items;
+        this.listener = listener;
+    }
+
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,7 +46,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 //        holder.imageView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(String.format("%s%s", mValues.get(position).date, mValues.get(position).time));
+        holder.bind(holder.mItem, listener);
     }
 
     @Override
@@ -47,13 +59,21 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final View mView;
         public final ImageView imageView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public UnCategorizedVideo mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             imageView = (ImageView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
+        }
+
+        public void bind(final UnCategorizedVideo video, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(video);
+                }
+            });
         }
 
         @Override

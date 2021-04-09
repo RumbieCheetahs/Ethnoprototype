@@ -1,6 +1,7 @@
 package com.example.ethnoprototype;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ethnoprototype.data.AppDatabase;
+import com.example.ethnoprototype.data.UnCategorizedVideo;
 import com.example.ethnoprototype.dummy.DummyContent;
+
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -49,9 +54,25 @@ public class UncategorisedItemsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_uncategorised_items_activity_list);
+        List<UnCategorizedVideo> videoList = AppDatabase.getAppDatabase(UncategorisedItemsActivity.this).videoDAO().getAll();
         recyclerView = findViewById(R.id.list_uncategorized);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS));
+        MyItemRecyclerViewAdapter adapter = new MyItemRecyclerViewAdapter(videoList, new MyItemRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(UnCategorizedVideo video) {
+                Intent intent = new Intent(getBaseContext(), vid_categorisaton.class);
+                intent.putExtra("path",video.getPath());
+                intent.putExtra("latitude",video.getLatitude());
+                intent.putExtra("latitude",video.getLatitude());
+                intent.putExtra("date",video.getDate());
+                intent.putExtra("time",video.getTime());
+                intent.putExtra("id",video.getVideo_id());
+//                intent.putExtra("item_produce_cycle",model.getCapacityCycle());
+//                intent.putExtra("video",video);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(adapter);
 //        if (getArguments() != null) {
 //            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
 //        }
