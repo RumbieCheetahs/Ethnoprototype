@@ -203,7 +203,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewPerfume"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/perfume"
                     tools:layout_editor_absoluteX="40dp"
@@ -250,7 +250,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewHousehold"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/household"
                     tools:layout_editor_absoluteX="379dp"
