@@ -95,8 +95,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewGoodWitchcraft"
-                    android:layout_width="110dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/good_witchcraft"
                     tools:layout_editor_absoluteX="40dp"
@@ -119,8 +119,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewBadWtchcraft"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="80dp"
                     app:srcCompat="@drawable/bad_witchcraft"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="234dp" />
@@ -143,8 +143,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewNaturalMed"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/natural_healing"
                     tools:layout_editor_absoluteX="379dp"
@@ -168,8 +168,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewFood"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/food"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -203,31 +203,32 @@
 
                 <ImageView
                     android:id="@+id/imageViewPerfume"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/perfume"
                     tools:layout_editor_absoluteX="40dp"
                     tools:layout_editor_absoluteY="235dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxBeauty"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="179dp"
-                    tools:layout_editor_absoluteY="259dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="259dp" />
 
                 <ImageView
                     android:id="@+id/imageViewBeauty"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/beauty"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="234dp" />
@@ -249,8 +250,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewHousehold"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/household"
                     tools:layout_editor_absoluteX="379dp"
                     tools:layout_editor_absoluteY="237dp" />
@@ -273,8 +274,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewConstruction"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/construction"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -308,8 +309,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewAnimals"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/animals"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="234dp" />
@@ -331,8 +332,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewPoisonous"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/poisonous"
                     tools:layout_editor_absoluteX="379dp"
                     tools:layout_editor_absoluteY="237dp" />
@@ -355,8 +356,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewBadLuck"
-                    android:layout_width="121dp"
-                    android:layout_height="89dp"
+                    android:layout_width="60dp"
+                    android:layout_height="70dp"
                     app:srcCompat="@drawable/bad_luck"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -379,7 +380,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewRituals"
-                    android:layout_width="121dp"
+                    android:layout_width="60dp"
                     android:layout_height="89dp"
                     app:srcCompat="@drawable/rituals"
                     tools:layout_editor_absoluteX="540dp"
