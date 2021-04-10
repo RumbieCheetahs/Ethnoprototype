@@ -29,12 +29,13 @@ public class VideoCategorisaton extends AppCompatActivity {
 
     VideoView videoView;
     Button btnPlay;
-    ImageButton btnSave;
+    ImageButton btnSave, plantImage;
     EditText plantName;
     Intent intent;
     String latitude, path, longitude,date, time, id;;
     List<String> categories;
     AppDatabase appDatabase;
+    public static int RESULT_LOAD_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,17 @@ public class VideoCategorisaton extends AppCompatActivity {
                 }
             }
         });
+
+        plantImage = (ImageButton) findViewById(R.id.imageButton2);
+        plantImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent GalleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(GalleryIntent, RESULT_LOAD_IMAGE);
+            }
+        });
+
+
 
     }
 

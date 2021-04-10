@@ -80,14 +80,16 @@ public class Second_screen extends AppCompatActivity {
             String path = photoFile.getAbsolutePath();
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = Uri.parse(path);
+//                Uri photoURI = Uri.parse(path);
                 //Broadcast images
+                File anotherFile = new File(path);
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+
+               Uri photoURI    =        FileProvider.getUriForFile(this,
+                        "com.example.ethnoprototype",
+                        anotherFile);
                 mediaScanIntent.setData(photoURI);
                 this.sendBroadcast(mediaScanIntent);
-//                        FileProvider.getUriForFile(this,
-//                        "com.example.ethnoprototype",
-//                        photoFile);
                 Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
 
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
