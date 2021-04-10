@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -35,6 +36,7 @@ public class VideoCategorisaton extends AppCompatActivity {
     String latitude, path, longitude,date, time, id;;
     List<String> categories;
     AppDatabase appDatabase;
+    UnCategorizedVideo receivedVideo;
     public static int RESULT_LOAD_IMAGE = 1;
 
     @Override
@@ -50,8 +52,8 @@ public class VideoCategorisaton extends AppCompatActivity {
 
         intent = getIntent();
         if(intent!= null) {
-//            isReceivedIntent = true;
             setReceivedValues();
+            Toast.makeText(getBaseContext(),"Received Video Id "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
         }
         else {
             btnPlay.setVisibility(View.GONE);
@@ -78,28 +80,33 @@ public class VideoCategorisaton extends AppCompatActivity {
                 }
                 else{
                     //Load video and image resources
-                    List<UnCategorizedVideo> videoList = appDatabase.videoDAO().loadAllByIds(new int[]{Integer.parseInt(id)});
-                    UnCategorizedVideo  unCategorizedVideo = videoList.get(0);
-                    unCategorizedVideo.category = true;
+                    //Toast.makeText(getBaseContext(),"Processing else part",Toast.LENGTH_LONG).show();
+//                    List<UnCategorizedVideo> videoList = appDatabase.videoDAO().loadAllByIds(new int[]{Integer.parseInt(id)});
+//                    UnCategorizedVideo  unCategorizedVideo = videoList.get(0);
+                    receivedVideo.category = true;
                     //Assign category resource video and get the id back
                     CategoryAssignedResource categoryAssignedResource = new CategoryAssignedResource();
 //                    categoryAssignedResource.imageId = null;
                     categoryAssignedResource.plantName = plantName.getText().toString();
-                    categoryAssignedResource.videoId = unCategorizedVideo;
+                    categoryAssignedResource.videoId = receivedVideo;
 
                     long id = appDatabase.assignedResourceDAO().insert(categoryAssignedResource);
-
+                    Toast.makeText(getBaseContext(),"Returned Id "+id,Toast.LENGTH_LONG).show();
                     //Change the not categorized flag to category assigned
-                    appDatabase.videoDAO().update(unCategorizedVideo);
+                    appDatabase.videoDAO().update(receivedVideo);
 
                     //Insert all the categories with the cat_id of this new resource
                     if(id!=0){
                         List<CategoryAndResource> categoryAndResourceList = new ArrayList<>();
                         CategoryAndResource [] categoryAndResources = new CategoryAndResource[categories.size()];
                         for(int i = 0; i <categoryAndResources.length; i++){
+                            Log.d("Checkboxes","Selected category"+categories.get(i));
                             categoryAndResources[i] = new CategoryAndResource(categories.get(i), Integer.parseInt(Long.toString(id)));
                         }
                         appDatabase.categoryAndResourceDAO().insertAll(categoryAndResources);
+                        Toast.makeText(getBaseContext(),"Categories successfully assigned",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(VideoCategorisaton.this,Second_screen.class));
+                        finish();
                     }
 
 
@@ -131,8 +138,13 @@ public class VideoCategorisaton extends AppCompatActivity {
         date = intent.getStringExtra("date");
 
         time = intent.getStringExtra("time");
+        Toast.makeText(getBaseContext(),"After receiving time "+time,Toast.LENGTH_LONG).show();
 
         id = intent.getStringExtra("id");
+
+        receivedVideo = intent.getParcelableExtra("video");
+
+        Toast.makeText(getBaseContext(),"After receiving "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
     }
 
     public void onCheckboxClicked(View view) {

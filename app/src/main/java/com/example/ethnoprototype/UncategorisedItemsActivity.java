@@ -2,6 +2,7 @@ package com.example.ethnoprototype;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,9 +59,11 @@ public class UncategorisedItemsActivity extends AppCompatActivity {
                 intent.putExtra("latitude",video.getLatitude());
                 intent.putExtra("date",video.getDate());
                 intent.putExtra("time",video.getTime());
-                intent.putExtra("id",video.getVideo_id());
+                intent.putExtra("id",video.video_id);
+                intent.putExtra("video",video);
 //                intent.putExtra("item_produce_cycle",model.getCapacityCycle());
 //                intent.putExtra("video",video);
+                Toast.makeText(getBaseContext(),"Before send "+video.video_id,Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

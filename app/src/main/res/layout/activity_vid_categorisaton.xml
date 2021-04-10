@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cate_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".VideoCategorisaton"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
+    tools:context=".VideoCategorisaton">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
+            android:padding="24dp">
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 style="@android:style/Widget.ImageButton"
-                android:layout_width="94dp"
-                android:layout_height="92dp"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
                 android:backgroundTint="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,22 +34,40 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/tree" />
 
-            <EditText
-                android:id="@+id/textViewPlantName"
-                style="@android:style/Widget.Material.EditText"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/plantname"
-                app:layout_constraintBottom_toTopOf="@+id/videoView2"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textViewPlantName"
+                    style="@android:style/Widget.Material.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+
+                    app:layout_constraintBottom_toTopOf="@+id/videoView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <VideoView
                 android:id="@+id/videoView2"
                 android:layout_width="300dp"
                 android:layout_height="200dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toTopOf="@id/buttonPlay"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.499"
@@ -73,25 +92,26 @@
             android:id="@+id/firstrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_below="@id/layout"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/layout">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxGoodWitchcraft"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="11dp"
-                    tools:layout_editor_absoluteY="260dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="260dp" />
 
                 <ImageView
                     android:id="@+id/imageViewGoodWitchcraft"
@@ -105,17 +125,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxBadWitchcraft"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="179dp"
-                    tools:layout_editor_absoluteY="259dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="259dp" />
 
                 <ImageView
                     android:id="@+id/imageViewBadWtchcraft"
@@ -129,17 +150,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxNaturalMed"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="348dp"
-                    tools:layout_editor_absoluteY="262dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="262dp" />
 
                 <ImageView
                     android:id="@+id/imageViewNaturalMed"
@@ -154,17 +176,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxFood"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="509dp"
-                    tools:layout_editor_absoluteY="263dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="263dp" />
 
                 <ImageView
                     android:id="@+id/imageViewFood"
@@ -181,25 +204,26 @@
             android:id="@+id/secondRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_below="@id/firstrow"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/firstrow">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxPerfume"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="11dp"
-                    tools:layout_editor_absoluteY="260dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="260dp" />
 
                 <ImageView
                     android:id="@+id/imageViewPerfume"
@@ -212,17 +236,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxBeauty"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="179dp"
-                    tools:layout_editor_absoluteY="259dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="259dp" />
 
                 <ImageView
                     android:id="@+id/imageViewBeauty"
@@ -235,17 +260,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxHousehold"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="348dp"
-                    tools:layout_editor_absoluteY="262dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="262dp" />
 
                 <ImageView
                     android:id="@+id/imageViewHousehold"
@@ -259,17 +285,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxConstruction"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="509dp"
-                    tools:layout_editor_absoluteY="263dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="263dp" />
 
                 <ImageView
                     android:id="@+id/imageViewConstruction"
@@ -286,25 +313,26 @@
             android:id="@+id/thirdRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_below="@id/secondRow"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/secondRow">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxAnimals"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="179dp"
-                    tools:layout_editor_absoluteY="259dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="259dp" />
 
                 <ImageView
                     android:id="@+id/imageViewAnimals"
@@ -317,17 +345,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxPoisonous"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="348dp"
-                    tools:layout_editor_absoluteY="262dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="262dp" />
 
                 <ImageView
                     android:id="@+id/imageViewPoisonous"
@@ -341,17 +370,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxBadLuck"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="509dp"
-                    tools:layout_editor_absoluteY="263dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="263dp" />
 
                 <ImageView
                     android:id="@+id/imageViewBadLuck"
@@ -365,17 +395,18 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/checkBoxRituals"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
+                    android:onClick="onCheckboxClicked"
                     tools:layout_editor_absoluteX="509dp"
-                    tools:layout_editor_absoluteY="263dp"
-                    android:onClick="onCheckboxClicked"/>
+                    tools:layout_editor_absoluteY="263dp" />
 
                 <ImageView
                     android:id="@+id/imageViewRituals"
@@ -392,12 +423,12 @@
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:orientation="horizontal"
             android:layout_below="@id/thirdRow"
-            android:gravity="center">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/imageButtonSave"
