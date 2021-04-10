@@ -6,6 +6,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface UnCategorizedVideoDAO {
@@ -21,6 +22,9 @@ public interface UnCategorizedVideoDAO {
 
     @Insert
     void insertAll(UnCategorizedVideo... images);
+
+    @Update
+    void update(UnCategorizedVideo video);
 
     @Delete
     void delete(UnCategorizedVideo image);

@@ -20,8 +20,13 @@ public interface UnCategorizedImageDAO {
 //            "last_name LIKE :last LIMIT 1")
 //    User findByName(String first, String last);
 
+    @Query("SELECT * FROM image WHERE imagePath IN (:Ids)")
+    List<UnCategorizedImage> loadAllByPath(String Ids);
+
     @Insert
     void insertAll(UnCategorizedImage... image);
+
+
 
     @Delete
     void delete(UnCategorizedImage image);

@@ -15,6 +15,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UnCategorizedVideoDAO videoDAO();
     public abstract CategoryDAO categoryDAO();
     public abstract CategoryAssignedResourceDAO assignedResourceDAO();
+    public  abstract CategoryAndResourceDAO categoryAndResourceDAO();
 
     private static AppDatabase INSTANCE;
 

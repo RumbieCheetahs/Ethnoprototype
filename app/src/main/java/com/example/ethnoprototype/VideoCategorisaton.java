@@ -9,12 +9,16 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.ethnoprototype.data.AppDatabase;
+import com.example.ethnoprototype.data.CategoryAndResource;
+import com.example.ethnoprototype.data.CategoryAssignedResource;
+import com.example.ethnoprototype.data.UnCategorizedVideo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,7 @@ public class VideoCategorisaton extends AppCompatActivity {
     VideoView videoView;
     Button btnPlay;
     ImageButton btnSave;
-    TextView plantName;
+    EditText plantName;
     Intent intent;
     String latitude, path, longitude,date, time, id;;
     List<String> categories;
@@ -72,6 +76,31 @@ public class VideoCategorisaton extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"You have not selected any category",Toast.LENGTH_LONG).show();
                 }
                 else{
+                    //Load video and image resources
+                    List<UnCategorizedVideo> videoList = appDatabase.videoDAO().loadAllByIds(new int[]{Integer.parseInt(id)});
+                    UnCategorizedVideo  unCategorizedVideo = videoList.get(0);
+                    unCategorizedVideo.category = true;
+                    //Assign category resource video and get the id back
+                    CategoryAssignedResource categoryAssignedResource = new CategoryAssignedResource();
+//                    categoryAssignedResource.imageId = null;
+                    categoryAssignedResource.plantName = plantName.getText().toString();
+                    categoryAssignedResource.videoId = unCategorizedVideo;
+
+                    long id = appDatabase.assignedResourceDAO().insert(categoryAssignedResource);
+
+                    //Change the not categorized flag to category assigned
+                    appDatabase.videoDAO().update(unCategorizedVideo);
+
+                    //Insert all the categories with the cat_id of this new resource
+                    if(id!=0){
+                        List<CategoryAndResource> categoryAndResourceList = new ArrayList<>();
+                        CategoryAndResource [] categoryAndResources = new CategoryAndResource[categories.size()];
+                        for(int i = 0; i <categoryAndResources.length; i++){
+                            categoryAndResources[i] = new CategoryAndResource(categories.get(i), Integer.parseInt(Long.toString(id)));
+                        }
+                        appDatabase.categoryAndResourceDAO().insertAll(categoryAndResources);
+                    }
+
 
                 }
             }

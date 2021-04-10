@@ -8,12 +8,13 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 @Dao
-public interface CategoryAssignedResourceDAO {
-    @Query("SELECT * FROM CategoryAssignedResource")
-    List<CategoryAssignedResource> getAll();
+public interface CategoryAndResourceDAO {
 
-    @Query("SELECT * FROM CategoryAssignedResource WHERE video_id IN (:Ids)")
-    List<CategoryAssignedResource> loadAllByIds(int[] Ids);
+    @Query("SELECT * FROM CategoryAndResource")
+    List<CategoryAndResource> getAll();
+
+    @Query("SELECT * FROM CategoryAndResource WHERE id IN (:Ids)")
+    List<CategoryAndResource> loadAllByIds(int[] Ids);
 
 //    @Query("SELECT * FROM UncategorisedImage WHERE first_name LIKE :first AND " +
 //            "last_name LIKE :last LIMIT 1")
@@ -22,11 +23,11 @@ public interface CategoryAssignedResourceDAO {
 //    @Query("SELECT * FROM CategoryAssignedResource WHERE category")
 
     @Insert
-    void insertAll(CategoryAssignedResource... images);
+    void insertAll(CategoryAndResource... categoryAndResources);
 
     @Insert
-    long insert (CategoryAssignedResource categoryAssignedResource);
+    long insert (CategoryAndResource categoryAndResource);
 
     @Delete
-    void delete(CategoryAssignedResource image);
+    void delete(CategoryAndResource categoryAndResource);
 }

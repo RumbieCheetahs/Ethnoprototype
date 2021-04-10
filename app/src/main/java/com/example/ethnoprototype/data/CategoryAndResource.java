@@ -10,9 +10,9 @@ public class CategoryAndResource {
     public int catID;
     public String name;
 
-    public CategoryAndResource(int id, String name) {
-        this.id = id;
+    public CategoryAndResource( String name, int catID) {
         this.name = name;
+        this.catID = catID;
     }
 
     public CategoryAndResource() {
