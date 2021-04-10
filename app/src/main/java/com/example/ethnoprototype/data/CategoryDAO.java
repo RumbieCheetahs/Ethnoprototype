@@ -10,19 +10,19 @@ import androidx.room.Query;
 @Dao
 public interface CategoryDAO {
 
-    @Query("SELECT * FROM Category")
-    List<Category> getAll();
+    @Query("SELECT * FROM CategoryAndResource")
+    List<CategoryAndResource> getAll();
 
-    @Query("SELECT * FROM Category WHERE id IN (:userIds)")
-    List<Category> loadAllByIds(int[] userIds);
+    @Query("SELECT * FROM CategoryAndResource WHERE id IN (:userIds)")
+    List<CategoryAndResource> loadAllByIds(int[] userIds);
 
 //    @Query("SELECT * FROM UncategorisedImage WHERE first_name LIKE :first AND " +
 //            "last_name LIKE :last LIMIT 1")
 //    User findByName(String first, String last);
 
     @Insert
-    void insertAll(Category... categories);
+    void insertAll(CategoryAndResource... categories);
 
     @Delete
-    void delete(Category category);
+    void delete(CategoryAndResource categoryAndResource);
 }

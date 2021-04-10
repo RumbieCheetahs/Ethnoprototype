@@ -76,14 +76,18 @@ public class Second_screen extends AppCompatActivity {
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-
             }
+            String path = photoFile.getAbsolutePath();
             // Continue only if the File was successfully created
             if (photoFile != null) {
-
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.ethnoprototype",
-                        photoFile);
+                Uri photoURI = Uri.parse(path);
+                //Broadcast images
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                mediaScanIntent.setData(photoURI);
+                this.sendBroadcast(mediaScanIntent);
+//                        FileProvider.getUriForFile(this,
+//                        "com.example.ethnoprototype",
+//                        photoFile);
                 Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
 
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -100,7 +104,6 @@ public class Second_screen extends AppCompatActivity {
                 videoFile = createVideoFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-
             }
             // Continue only if the File was successfully created
             if (videoFile != null) {
@@ -117,9 +120,7 @@ public class Second_screen extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-
             double[] coordinates = getLocation();
-
             if (coordinates != null) {
                 double latitude = coordinates[0];
                 double longitude = coordinates[1];
@@ -135,14 +136,12 @@ public class Second_screen extends AppCompatActivity {
                         video.date = LocalDate.now().toString();
                         video.time = LocalTime.now().toString();
                     }
-
                     db.videoDAO().insertAll(video);
-
                 } else {
-                    Uri imageUri = data.getData();
-                    Toast.makeText(getBaseContext(), "Image URI " + imageUri.getPath().toString(), Toast.LENGTH_LONG).show();
+//                    Uri imageUri = data.getData();
+                    Toast.makeText(getBaseContext(), "Image URI " + currentPath, Toast.LENGTH_LONG).show();
                     UnCategorizedImage image = new UnCategorizedImage();
-                    image.imagePath = imageUri.getPath();
+                    image.imagePath = currentPath;
                     image.imageLatitude = latitude;
                     image.imageLongitude = longitude;
 
@@ -150,7 +149,6 @@ public class Second_screen extends AppCompatActivity {
                         image.imageDate = LocalDate.now().toString();
                         image.imageTime = LocalTime.now().toString();
                     }
-
                     db.imageDAO().insertAll(image);
                 }
             }
@@ -169,7 +167,6 @@ public class Second_screen extends AppCompatActivity {
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-
         // Save a file: path for use with ACTION_VIEW intents
         currentPath = image.getAbsolutePath();
         return image;
@@ -184,7 +181,6 @@ public class Second_screen extends AppCompatActivity {
                 ".mp4",         /* suffix */
                 storageDir      /* directory */
         );
-
         // Save a file: path for use with ACTION_VIEW intents
         currentPath = video.getAbsolutePath();
         return video;
@@ -198,10 +194,8 @@ public class Second_screen extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
             return location;
         } else {
-
             locationService.showSettingsAlert();
             return null;
         }
-
     }
 }

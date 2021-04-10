@@ -17,16 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ethnoprototype">
-        <activity android:name=".EthnobotanicalWalk"></activity>
+        <activity android:name=".EthnobotanicalWalk"/>
         <activity android:name=".SearchByName" />
         <activity android:name=".UncategorisedItemsActivity"/>
         <activity android:name=".VisitorPage" />
         <activity android:name=".Second_screen" />
-        <activity android:name=".vid_categorisaton" />
+        <activity android:name=".VideoCategorisaton" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

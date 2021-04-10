@@ -1,22 +1,14 @@
 package com.example.ethnoprototype;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.ethnoprototype.data.AppDatabase;
 import com.example.ethnoprototype.data.UnCategorizedVideo;
-import com.example.ethnoprototype.dummy.DummyContent;
 
 import java.util.List;
 
@@ -60,7 +52,7 @@ public class UncategorisedItemsActivity extends AppCompatActivity {
         MyItemRecyclerViewAdapter adapter = new MyItemRecyclerViewAdapter(videoList, new MyItemRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(UnCategorizedVideo video) {
-                Intent intent = new Intent(getBaseContext(), vid_categorisaton.class);
+                Intent intent = new Intent(getBaseContext(), VideoCategorisaton.class);
                 intent.putExtra("path",video.getPath());
                 intent.putExtra("latitude",video.getLatitude());
                 intent.putExtra("latitude",video.getLatitude());

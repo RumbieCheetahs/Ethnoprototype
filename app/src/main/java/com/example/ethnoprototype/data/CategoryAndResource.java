@@ -4,13 +4,17 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Category {
+public class CategoryAndResource {
     @PrimaryKey (autoGenerate = true)
     public int id;
+    public int catID;
     public String name;
 
-    public Category(int id, String name) {
+    public CategoryAndResource(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public CategoryAndResource() {
     }
 }

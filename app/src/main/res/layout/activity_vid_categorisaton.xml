@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context=".vid_categorisaton"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <ScrollView
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        tools:context=".VideoCategorisaton"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -37,8 +35,8 @@
 
             <TextView
                 android:id="@+id/textViewPlantName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:text="PlantName"
                 app:layout_constraintBottom_toTopOf="@+id/videoView2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,12 +83,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/checkGoodWitchcraft"
+                    android:id="@+id/checkBoxGoodWitchcraft"
                     android:layout_width="32dp"
                     android:layout_height="46dp"
                     android:layout_gravity="center"
                     tools:layout_editor_absoluteX="11dp"
-                    tools:layout_editor_absoluteY="260dp" />
+                    tools:layout_editor_absoluteY="260dp"
+                    android:onClick="onCheckboxClicked"/>
 
                 <ImageView
                     android:id="@+id/imageViewGoodWitchcraft"
@@ -112,7 +111,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="179dp"
-                        tools:layout_editor_absoluteY="259dp" />
+                        tools:layout_editor_absoluteY="259dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewBadWtchcraft"
@@ -135,7 +135,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="348dp"
-                        tools:layout_editor_absoluteY="262dp" />
+                        tools:layout_editor_absoluteY="262dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewNaturalMed"
@@ -158,7 +159,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="509dp"
-                        tools:layout_editor_absoluteY="263dp" />
+                        tools:layout_editor_absoluteY="263dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewFood"
@@ -192,7 +194,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="11dp"
-                        tools:layout_editor_absoluteY="260dp" />
+                        tools:layout_editor_absoluteY="260dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewPerfume"
@@ -214,7 +217,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="179dp"
-                        tools:layout_editor_absoluteY="259dp" />
+                        tools:layout_editor_absoluteY="259dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewBeauty"
@@ -236,7 +240,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="348dp"
-                        tools:layout_editor_absoluteY="262dp" />
+                        tools:layout_editor_absoluteY="262dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewHousehold"
@@ -259,7 +264,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="509dp"
-                        tools:layout_editor_absoluteY="263dp" />
+                        tools:layout_editor_absoluteY="263dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewConstruction"
@@ -293,7 +299,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="179dp"
-                        tools:layout_editor_absoluteY="259dp" />
+                        tools:layout_editor_absoluteY="259dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewAnimals"
@@ -315,7 +322,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="348dp"
-                        tools:layout_editor_absoluteY="262dp" />
+                        tools:layout_editor_absoluteY="262dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewPoisonous"
@@ -338,7 +346,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="509dp"
-                        tools:layout_editor_absoluteY="263dp" />
+                        tools:layout_editor_absoluteY="263dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewBadLuck"
@@ -361,7 +370,8 @@
                         android:layout_height="46dp"
                         android:layout_gravity="center"
                         tools:layout_editor_absoluteX="509dp"
-                        tools:layout_editor_absoluteY="263dp" />
+                        tools:layout_editor_absoluteY="263dp"
+                        android:onClick="onCheckboxClicked"/>
 
                     <ImageView
                         android:id="@+id/imageViewRituals"
@@ -399,4 +409,3 @@
 
         </RelativeLayout>
 </ScrollView>
-</RelativeLayout>
