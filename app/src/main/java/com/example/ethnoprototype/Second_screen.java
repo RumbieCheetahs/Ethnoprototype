@@ -148,6 +148,8 @@ public class Second_screen extends AppCompatActivity {
             if (coordinates != null) {
                 latitude = coordinates[0];
                 longitude = coordinates[1];
+            } else {
+                Toast.makeText(getApplicationContext(), " Resource will be saved but it has no coordinates", Toast.LENGTH_LONG).show();
             }
                 if (requestCode == REQUEST_VIDEO_CAPTURE) {
                  //   Uri videoUri = data.getData();
