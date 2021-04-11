@@ -22,33 +22,40 @@
 
             <ImageButton
                 android:id="@+id/imageButton2"
-                style="@android:style/Widget.ImageButton"
-                android:layout_width="94dp"
-                android:layout_height="92dp"
-                android:backgroundTint="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:scaleType="fitCenter"
+                android:tint="#FCE4EC"
                 app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintStart_toStartOf="parent"
-
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/tree" />
-
-            <EditText
+                app:srcCompat="@drawable/tree"
+                tools:ignore="ContentDescription" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/loginUsernameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/plantname"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textViewPlantName"
-                style="@android:style/Widget.Material.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                android:hint="@string/plantname"
+
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/videoView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <VideoView
                 android:id="@+id/videoView2"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toTopOf="@id/buttonPlay"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.499"

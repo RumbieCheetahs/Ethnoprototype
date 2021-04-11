@@ -20,15 +20,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ethnoprototype">
+        <activity android:name=".ShowResourceActivity"></activity>
         <activity
             android:name=".CaptureImageActivity"
             android:label="@string/title_activity_capture_image"
-            android:theme="@style/Theme.Ethnoprototype.NoActionBar"></activity>
+            android:theme="@style/Theme.Ethnoprototype.NoActionBar" />
         <activity android:name=".EthnobotanicalWalk" />
         <activity android:name=".SearchByName" />
         <activity android:name=".UncategorisedItemsActivity" />
         <activity android:name=".VisitorPage" />
         <activity android:name=".Second_screen" />
+        <activity android:name=".CategoryListActivity" />
         <activity android:name=".VideoCategorisaton" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -50,7 +52,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" ></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

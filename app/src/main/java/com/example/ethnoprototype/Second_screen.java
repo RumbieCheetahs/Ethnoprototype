@@ -3,6 +3,7 @@ package com.example.ethnoprototype;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ public class Second_screen extends AppCompatActivity {
     String currentPath;
     LocationService locationService;
     ImageButton btnAssignCategories, btnCaptureImage, btnCaptureVideo;
+    Button btnCategoriesList;
 
     AppDatabase db;
     @Override
@@ -40,7 +43,7 @@ public class Second_screen extends AppCompatActivity {
         btnAssignCategories = findViewById(R.id.btn_categories);
         btnCaptureImage = findViewById(R.id.btn_camera);
         btnCaptureVideo = findViewById(R.id.btn_video);
-
+        btnCategoriesList = findViewById(R.id.button_category_list);
         btnAssignCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +63,13 @@ public class Second_screen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dispatchTakeVideoIntent();
+            }
+        });
+
+        btnCategoriesList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Second_screen.this, CategoryListActivity.class));
             }
         });
         locationService = new LocationService(Second_screen.this);
@@ -94,7 +104,7 @@ public class Second_screen extends AppCompatActivity {
                        BuildConfig.APPLICATION_ID + ".provider",
                        photoFile);
 
-                Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
@@ -129,6 +139,7 @@ public class Second_screen extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -148,12 +159,15 @@ public class Second_screen extends AppCompatActivity {
                         video.date = LocalDate.now().toString();
                         video.time = LocalTime.now().toString();
                     }
+                    else {
+                        video.date = new SimpleDateFormat("ddMMyyyy").format(new Date());
+                        video.time = new SimpleDateFormat("HHmmss").format(new Date());
+                    }
                     db.videoDAO().insertAll(video);
                     Toast.makeText(getBaseContext(), "Video successfully saved!", Toast.LENGTH_LONG).show();
 
                 } else {
-//                    Uri imageUri = data.getData();
-                  //  Toast.makeText(getBaseContext(), "Image URI " + currentPath, Toast.LENGTH_LONG).show();
+
                     UnCategorizedImage image = new UnCategorizedImage();
                     image.imagePath = currentPath;
                     image.imageLatitude = latitude;
@@ -163,13 +177,17 @@ public class Second_screen extends AppCompatActivity {
                         image.imageDate = LocalDate.now().toString();
                         image.imageTime = LocalTime.now().toString();
                     }
+                    else {
+                        image.imageDate = new SimpleDateFormat("ddMMyyyy").format(new Date());
+                        image.imageTime = new SimpleDateFormat("HHmmss").format(new Date());
+                    }
                     db.imageDAO().insertAll(image);
                     addToGallery();
                     Toast.makeText(getBaseContext(), "Image successfully saved!", Toast.LENGTH_LONG).show();
-
                 }
+            }else {
+                Toast.makeText(getApplicationContext(), " Resource could not be saved it has no coordinates", Toast.LENGTH_LONG).show();
             }
-            Toast.makeText(getApplicationContext(), " Resource saved but with no coordinates", Toast.LENGTH_LONG).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -207,9 +225,8 @@ public class Second_screen extends AppCompatActivity {
         if (locationService.canGetLocation()) {
             double longitude = locationService.getLongitude();
             double latitude = locationService.getLatitude();
-            double[] location = new double[]{latitude,longitude};
-            Toast.makeText(getApplicationContext(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
-            return location;
+            //            Toast.makeText(getApplicationContext(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
+            return new double[]{latitude,longitude};
         } else {
             locationService.showSettingsAlert();
             return null;

@@ -1,9 +1,13 @@
 package com.example.ethnoprototype;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -19,8 +24,15 @@ import android.widget.VideoView;
 import com.example.ethnoprototype.data.AppDatabase;
 import com.example.ethnoprototype.data.CategoryAndResource;
 import com.example.ethnoprototype.data.CategoryAssignedResource;
+import com.example.ethnoprototype.data.UnCategorizedImage;
 import com.example.ethnoprototype.data.UnCategorizedVideo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +49,9 @@ public class VideoCategorisaton extends AppCompatActivity {
     List<String> categories;
     AppDatabase appDatabase;
     UnCategorizedVideo receivedVideo;
-    public static int RESULT_LOAD_IMAGE = 1;
+    String imagePath;
+    Uri imageURI;
+    public static int PICK_GALLERY_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +67,7 @@ public class VideoCategorisaton extends AppCompatActivity {
         intent = getIntent();
         if(intent!= null) {
             setReceivedValues();
-            Toast.makeText(getBaseContext(),"Received Video Id "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
+           // Toast.makeText(getBaseContext(),"Received Video Id "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
         }
         else {
             btnPlay.setVisibility(View.GONE);
@@ -84,11 +98,15 @@ public class VideoCategorisaton extends AppCompatActivity {
 //                    List<UnCategorizedVideo> videoList = appDatabase.videoDAO().loadAllByIds(new int[]{Integer.parseInt(id)});
 //                    UnCategorizedVideo  unCategorizedVideo = videoList.get(0);
                     receivedVideo.category = true;
+                    //Get image record
+                    File file = FileUtils.getFile(getBaseContext(), imageURI);
+                    UnCategorizedImage image = appDatabase.imageDAO().getImageFromPath(file.getAbsolutePath());
                     //Assign category resource video and get the id back
                     CategoryAssignedResource categoryAssignedResource = new CategoryAssignedResource();
 //                    categoryAssignedResource.imageId = null;
                     categoryAssignedResource.plantName = plantName.getText().toString();
                     categoryAssignedResource.videoId = receivedVideo;
+                    categoryAssignedResource.imageId = image;
 
                     long id = appDatabase.assignedResourceDAO().insert(categoryAssignedResource);
                     Toast.makeText(getBaseContext(),"Returned Id "+id,Toast.LENGTH_LONG).show();
@@ -118,8 +136,14 @@ public class VideoCategorisaton extends AppCompatActivity {
         plantImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent GalleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(GalleryIntent, RESULT_LOAD_IMAGE);
+                Intent chooseFromGalleryIntent = new Intent();
+                chooseFromGalleryIntent.setType("image/*");
+                chooseFromGalleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                chooseFromGalleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                chooseFromGalleryIntent.putExtra("return-data", true);
+                String[] mimeTypes = new String[]{"image/jpeg", "image/png"};  // 3
+                chooseFromGalleryIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                startActivityForResult(Intent.createChooser(chooseFromGalleryIntent, "Select Image"), PICK_GALLERY_IMAGE);
             }
         });
 
@@ -138,13 +162,13 @@ public class VideoCategorisaton extends AppCompatActivity {
         date = intent.getStringExtra("date");
 
         time = intent.getStringExtra("time");
-        Toast.makeText(getBaseContext(),"After receiving time "+time,Toast.LENGTH_LONG).show();
+       // Toast.makeText(getBaseContext(),"After receiving time "+time,Toast.LENGTH_LONG).show();
 
         id = intent.getStringExtra("id");
 
         receivedVideo = intent.getParcelableExtra("video");
 
-        Toast.makeText(getBaseContext(),"After receiving "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
+      //  Toast.makeText(getBaseContext(),"After receiving "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
     }
 
     public void onCheckboxClicked(View view) {
@@ -213,6 +237,47 @@ public class VideoCategorisaton extends AppCompatActivity {
                 else categories.remove("Good Witchcraft");
                 break;
 
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_GALLERY_IMAGE && resultCode == RESULT_OK){
+            Uri sourceUri = data.getData();
+//            File file = FileUtils.getFile(this, sourceUri);
+            String path = sourceUri.getPath() ;// "/mnt/sdcard/FileName.mp3"
+//            File file = new File(new URI(path));
+//            File file = null;
+//            try {
+//                file = new File(new URI(path));
+//            } catch (URISyntaxException e) {
+//                e.printStackTrace();
+//                Log.e("RARARARA",e.getMessage());
+//            }
+//            Toast.makeText(getBaseContext(),"IN ACTIVITY RESULT" +sourceUri,Toast.LENGTH_LONG).show();
+
+            plantImage.setImageURI(sourceUri);
+            imagePath = sourceUri.getPath();
+            imageURI = sourceUri;
+//                imageView.setImageBitmap(bmp1);
+
+            //            InputStream inputStream = null;
+//            try {
+////                imagePath = file.getAbsolutePath();
+////                Toast.makeText(getBaseContext(), "File path"+imagePath,Toast.LENGTH_LONG).show();
+////                inputStream = new FileInputStream(file);
+////
+//////                Toast.makeText(getBaseContext(), "File path"+imagePath,Toast.LENGTH_LONG).show();
+////                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+////                Bitmap bmp1 = Bitmap.createScaledBitmap(bitmap, 224, 224, false);
+//                ImageView imageView = findViewById(R.id.imageView);
+////                imageView.setImageBitmap(bmp1);
+//                imageView.setImageURI(sourceUri);
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//                Log.e("ERRRRRR",e.getMessage());
+//            }
         }
     }
 }

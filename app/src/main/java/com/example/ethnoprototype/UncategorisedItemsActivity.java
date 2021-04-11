@@ -63,7 +63,7 @@ public class UncategorisedItemsActivity extends AppCompatActivity {
                 intent.putExtra("video",video);
 //                intent.putExtra("item_produce_cycle",model.getCapacityCycle());
 //                intent.putExtra("video",video);
-                Toast.makeText(getBaseContext(),"Before send "+video.video_id,Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(),"Before send "+video.video_id,Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });

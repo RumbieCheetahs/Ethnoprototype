@@ -16,6 +16,9 @@ public interface UnCategorizedImageDAO {
     @Query("SELECT * FROM image WHERE image_id IN (:Ids)")
     List<UnCategorizedImage> loadAllByIds(int[] Ids);
 
+    @Query("SELECT * FROM image WHERE imagePath IN (:path)")
+    UnCategorizedImage getImageFromPath(String path);
+
 //    @Query("SELECT * FROM UncategorisedImage WHERE first_name LIKE :first AND " +
 //            "last_name LIKE :last LIMIT 1")
 //    User findByName(String first, String last);
