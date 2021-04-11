@@ -19,6 +19,8 @@ public interface UnCategorizedVideoDAO {
 //    @Query("SELECT * FROM UncategorisedImage WHERE first_name LIKE :first AND " +
 //            "last_name LIKE :last LIMIT 1")
 //    User findByName(String first, String last);
+    @Query("SELECT * FROM video WHERE not category")
+    List<UnCategorizedVideo> getAllWithoutCategory();
 
     @Insert
     void insertAll(UnCategorizedVideo... images);

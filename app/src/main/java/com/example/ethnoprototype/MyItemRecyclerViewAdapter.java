@@ -2,12 +2,15 @@ package com.example.ethnoprototype;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ethnoprototype.data.UnCategorizedVideo;
 import com.example.ethnoprototype.dummy.DummyContent.DummyItem;
 
@@ -24,16 +27,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     }
 
     private OnItemClickListener listener ;
-
+    private Context context;
 
     private final List<UnCategorizedVideo> mValues;
 
-    public MyItemRecyclerViewAdapter(List<UnCategorizedVideo> items, OnItemClickListener listener) {
+    public MyItemRecyclerViewAdapter(Context context,List<UnCategorizedVideo> items, OnItemClickListener listener) {
         mValues = items;
         this.listener = listener;
+        this.context = context;
     }
-
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,7 +48,12 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 //        holder.imageView.setText(mValues.get(position).id);
-        holder.mContentView.setText(String.format("%s%s", mValues.get(position).date, mValues.get(position).time));
+        holder.mContentView.setText( mValues.get(position).date);
+        holder.time.setText("");
+        Glide.with(context)
+                .load(mValues.get(position).path)
+                .centerCrop()
+                .into(holder.imageView);
         holder.bind(holder.mItem, listener);
     }
 
@@ -58,6 +65,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final ImageView imageView;
+        public final TextView time;
         public final TextView mContentView;
         public UnCategorizedVideo mItem;
 
@@ -66,6 +74,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             mView = view;
             imageView = (ImageView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
+            time = view.findViewById(R.id.itemTime);
         }
 
         public void bind(final UnCategorizedVideo video, final OnItemClickListener listener) {

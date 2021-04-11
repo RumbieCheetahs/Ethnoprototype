@@ -97,9 +97,7 @@ public class Second_screen extends AppCompatActivity {
             String path = photoFile.getAbsolutePath();
             // Continue only if the File was successfully created
             if (photoFile != null) {
-//                Uri photoURI = Uri.parse(path);
-                //Broadcast images
-              //  File anotherFile = new File(path);
+
                Uri photoURI =  FileProvider.getUriForFile(this,
                        BuildConfig.APPLICATION_ID + ".provider",
                        photoFile);

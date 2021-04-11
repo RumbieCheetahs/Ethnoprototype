@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ethnoprototype.data.AppDatabase;
 import com.example.ethnoprototype.data.CategoryAndResource;
@@ -31,34 +33,24 @@ import java.util.List;
  */
 public class CategoryListActivity extends AppCompatActivity {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
     RecyclerView recyclerView;
     AppDatabase db;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public CategoryListActivity() {
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState,  PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_category_list_activity_list);
-
+        Toast.makeText(getBaseContext(),"Tapinda muActivity",Toast.LENGTH_LONG).show();
         recyclerView = findViewById(R.id.categoryList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         db = AppDatabase.getAppDatabase(getBaseContext());
         List<CategoryAndResource> assignedResources = db.categoryAndResourceDAO().getAll();
 
         HashSet<String> categorySet = new HashSet<>();
-
+        Toast.makeText(getBaseContext(),"Resource List size"+ assignedResources.size(),Toast.LENGTH_LONG).show();
         for(CategoryAndResource resource : assignedResources){
             categorySet.add(resource.name);
+            Log.d("Resource name",resource.name);
         }
 
         List<String> list = new ArrayList<>(categorySet);
