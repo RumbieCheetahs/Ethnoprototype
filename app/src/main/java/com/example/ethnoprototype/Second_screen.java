@@ -142,9 +142,13 @@ public class Second_screen extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             double[] coordinates = getLocation();
+            double latitude = 0.0;
+            double longitude = 0.0;
+
             if (coordinates != null) {
-                double latitude = coordinates[0];
-                double longitude = coordinates[1];
+                latitude = coordinates[0];
+                longitude = coordinates[1];
+            }
                 if (requestCode == REQUEST_VIDEO_CAPTURE) {
                  //   Uri videoUri = data.getData();
                    // Toast.makeText(getBaseContext(), "Video URI " + currentPath, Toast.LENGTH_LONG).show();
@@ -183,9 +187,9 @@ public class Second_screen extends AppCompatActivity {
                     addToGallery();
                     Toast.makeText(getBaseContext(), "Image successfully saved!", Toast.LENGTH_LONG).show();
                 }
-            }else {
-                Toast.makeText(getApplicationContext(), " Resource could not be saved it has no coordinates", Toast.LENGTH_LONG).show();
-            }
+//            }else {
+//                Toast.makeText(getApplicationContext(), " Resource could not be saved it has no coordinates", Toast.LENGTH_LONG).show();
+//            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -226,7 +230,7 @@ public class Second_screen extends AppCompatActivity {
             //            Toast.makeText(getApplicationContext(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
             return new double[]{latitude,longitude};
         } else {
-            locationService.showSettingsAlert();
+         //   locationService.showSettingsAlert();
             return null;
         }
     }
