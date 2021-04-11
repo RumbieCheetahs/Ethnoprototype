@@ -91,7 +91,7 @@ public class Second_screen extends AppCompatActivity {
                 //Broadcast images
               //  File anotherFile = new File(path);
                Uri photoURI =  FileProvider.getUriForFile(this,
-                        "com.example.ethnoprototype.fileprovider",
+                       BuildConfig.APPLICATION_ID + ".provider",
                        photoFile);
 
                 Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
@@ -120,7 +120,7 @@ public class Second_screen extends AppCompatActivity {
             // Continue only if the File was successfully created
             if (videoFile != null) {
                 Uri videoURI = FileProvider.getUriForFile(this,
-                        "com.example.ethnoprototype.fileprovider",
+                        BuildConfig.APPLICATION_ID + ".provider",
                         videoFile);
                 takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoURI);
 //                Toast.makeText(getBaseContext(), "URI : "+ videoURI.toString(),Toast.LENGTH_LONG).show();

@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        if (Utils.requestingLocationUpdates(this)) {
-//            if (!checkPermissions()) {
-//                requestPermissions();
-//            }
+            if (!checkPermissions()) {
+                requestPermissions();
+            }
 //        }
 
 //        locationService = new LocationService(MainActivity.this);
@@ -102,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private boolean checkPermissions() {
         return  PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION);
+                Manifest.permission.ACCESS_FINE_LOCATION) && PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) &&
+                PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     private void requestPermissions() {
@@ -123,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             // Request permission
                             ActivityCompat.requestPermissions(MainActivity.this,
-                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+                                    ,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                     REQUEST_PERMISSIONS_REQUEST_CODE);
                         }
                     })
@@ -134,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
             ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+                            ,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
