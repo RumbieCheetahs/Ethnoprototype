@@ -40,6 +40,7 @@ public class CategoryListActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState,  PersistableBundle persistentState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_category_list_activity_list);
+
         Toast.makeText(getBaseContext(),"Tapinda muActivity",Toast.LENGTH_LONG).show();
         recyclerView = findViewById(R.id.categoryList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));

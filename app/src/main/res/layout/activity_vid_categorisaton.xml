@@ -11,7 +11,7 @@
     >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
@@ -22,12 +22,11 @@
 
             <ImageButton
                 android:id="@+id/imageButton2"
+                style="@android:style/Widget.Holo.Light.ImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:tint="@color/white"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/tree"
@@ -43,7 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/videoView2"
                 app:layout_constraintEnd_toEndOf="parent"

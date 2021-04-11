@@ -27,12 +27,16 @@
             android:theme="@style/Theme.Ethnoprototype.NoActionBar" />
         <activity android:name=".EthnobotanicalWalk" />
         <activity android:name=".SearchByName" />
-        <activity android:name=".UncategorisedItemsActivity" />
+        <activity android:name=".UncategorisedItemsActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".VisitorPage" />
-        <activity android:name=".Second_screen" />
+        <activity android:name=".Second_screen"
+            android:screenOrientation="portrait"/>
         <activity android:name=".CategoryListActivity" />
-        <activity android:name=".VideoCategorisaton" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".VideoCategorisaton"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

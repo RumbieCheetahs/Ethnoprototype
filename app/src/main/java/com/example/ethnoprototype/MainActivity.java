@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        visitor = findViewById(R.id.btn_visitor);
+//        visitor = findViewById(R.id.btn_visitor);
 
         ethnographer = findViewById(R.id.btn_paraecologist);
-        visitor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                populateWithTestData(AppDatabase.getAppDatabase(getApplicationContext()));
-                startActivity(new Intent(MainActivity.this, VisitorPage.class));
-            }
-        });
+//        visitor.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                populateWithTestData(AppDatabase.getAppDatabase(getApplicationContext()));
+//                startActivity(new Intent(MainActivity.this, VisitorPage.class));
+//            }
+//        });
 
         ethnographer.setOnClickListener(new View.OnClickListener() {
             @Override

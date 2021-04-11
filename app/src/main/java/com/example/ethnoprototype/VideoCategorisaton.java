@@ -36,8 +36,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class VideoCategorisaton extends AppCompatActivity {
 
     VideoView videoView;
@@ -67,7 +65,6 @@ public class VideoCategorisaton extends AppCompatActivity {
         intent = getIntent();
         if(intent!= null) {
             setReceivedValues();
-           // Toast.makeText(getBaseContext(),"Received Video Id "+receivedVideo.video_id,Toast.LENGTH_LONG).show();
         }
         else {
             btnPlay.setVisibility(View.GONE);
@@ -93,10 +90,7 @@ public class VideoCategorisaton extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"You have not selected any category",Toast.LENGTH_LONG).show();
                 }
                 else{
-                    //Load video and image resources
-                    //Toast.makeText(getBaseContext(),"Processing else part",Toast.LENGTH_LONG).show();
-//                    List<UnCategorizedVideo> videoList = appDatabase.videoDAO().loadAllByIds(new int[]{Integer.parseInt(id)});
-//                    UnCategorizedVideo  unCategorizedVideo = videoList.get(0);
+
                     receivedVideo.category = true;
                     //Get image record
                     File file = FileUtils.getFile(getBaseContext(), imageURI);
@@ -109,7 +103,7 @@ public class VideoCategorisaton extends AppCompatActivity {
                     categoryAssignedResource.imageId = image;
 
                     long id = appDatabase.assignedResourceDAO().insert(categoryAssignedResource);
-                    Toast.makeText(getBaseContext(),"Returned Id "+id,Toast.LENGTH_LONG).show();
+               //     Toast.makeText(getBaseContext(),"Returned Id "+id,Toast.LENGTH_LONG).show();
                     //Change the not categorized flag to category assigned
                     appDatabase.videoDAO().update(receivedVideo);
 
@@ -245,39 +239,10 @@ public class VideoCategorisaton extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PICK_GALLERY_IMAGE && resultCode == RESULT_OK){
             Uri sourceUri = data.getData();
-//            File file = FileUtils.getFile(this, sourceUri);
             String path = sourceUri.getPath() ;// "/mnt/sdcard/FileName.mp3"
-//            File file = new File(new URI(path));
-//            File file = null;
-//            try {
-//                file = new File(new URI(path));
-//            } catch (URISyntaxException e) {
-//                e.printStackTrace();
-//                Log.e("RARARARA",e.getMessage());
-//            }
-//            Toast.makeText(getBaseContext(),"IN ACTIVITY RESULT" +sourceUri,Toast.LENGTH_LONG).show();
-
             plantImage.setImageURI(sourceUri);
             imagePath = sourceUri.getPath();
             imageURI = sourceUri;
-//                imageView.setImageBitmap(bmp1);
-
-            //            InputStream inputStream = null;
-//            try {
-////                imagePath = file.getAbsolutePath();
-////                Toast.makeText(getBaseContext(), "File path"+imagePath,Toast.LENGTH_LONG).show();
-////                inputStream = new FileInputStream(file);
-////
-//////                Toast.makeText(getBaseContext(), "File path"+imagePath,Toast.LENGTH_LONG).show();
-////                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-////                Bitmap bmp1 = Bitmap.createScaledBitmap(bitmap, 224, 224, false);
-//                ImageView imageView = findViewById(R.id.imageView);
-////                imageView.setImageBitmap(bmp1);
-//                imageView.setImageURI(sourceUri);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//                Log.e("ERRRRRR",e.getMessage());
-//            }
         }
     }
 }
