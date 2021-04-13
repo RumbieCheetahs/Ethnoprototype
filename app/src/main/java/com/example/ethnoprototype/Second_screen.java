@@ -5,11 +5,13 @@ import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -84,38 +86,71 @@ public class Second_screen extends AppCompatActivity {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
            // startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Toast.makeText(this,
-                        "Photo file can't be created, please try again",
-                        Toast.LENGTH_SHORT).show();
-                return;
-            }
-            String path = photoFile.getAbsolutePath();
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + "_"+".jpg";
+            File image = null;
+            File imagesFolder = new File(Environment.getExternalStorageDirectory(), "EthnoMedia");
+            boolean b = imagesFolder.mkdirs(); // <----
+            image = new File(imagesFolder, imageFileName);
 
-               Uri photoURI =  FileProvider.getUriForFile(this,
+
+//            Uri uriSavedImage = Uri.fromFile(image);
+            Uri photoURI =  FileProvider.getUriForFile(this,
                        BuildConfig.APPLICATION_ID + ".provider",
-                       photoFile);
+                       image);
+            currentPath = image.getAbsolutePath();
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
-//                Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
+
+            //OLD IMPLEMENTATION
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException ex) {
+//                // Error occurred while creating the File
+//                Toast.makeText(this,
+//                        "Photo file can't be created, please try again",
+//                        Toast.LENGTH_SHORT).show();
+//                Log.e("TAG", ex.getMessage());
+//                return;
+//            }
+//            String path = photoFile.getAbsolutePath();
+//            // Continue only if the File was successfully created
+//            if (photoFile != null) {
+//
+//               Uri photoURI =  FileProvider.getUriForFile(this,
+//                       BuildConfig.APPLICATION_ID + ".provider",
+//                       photoFile);
+//
+////                Toast.makeText(getBaseContext(), "URI : "+ photoURI.toString(),Toast.LENGTH_LONG).show();
+//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//            }
         }
     }
 
     private void addToGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(currentPath);
-        Uri picUri = Uri.fromFile(f);
-        galleryIntent.setData(picUri);
-        this.sendBroadcast(galleryIntent);
+//        Intent galleryIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//        Toast.makeText(getBaseContext(),"Current path of the file : " +currentPath,Toast.LENGTH_LONG).show();
+//        File f = new File(currentPath);
+//        galleryIntent.setData(Uri.fromFile(f));
+//       getBaseContext().sendBroadcast(galleryIntent);
+        MediaScannerConnection.scanFile(Second_screen.this,
+                new String[] { currentPath }, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    public void onScanCompleted(String path, Uri uri) {
+                        Log.i("TAG", "Finished scanning " + path);
+                        Toast.makeText(getBaseContext(),"Finished scanning " + path,Toast.LENGTH_LONG).show();
+                    }
+                });
     }
+
+    private void scanFile(String path) {
+
+
+    }
+
     private void dispatchTakeVideoIntent() {
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
@@ -200,11 +235,30 @@ public class Second_screen extends AppCompatActivity {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//        File image = null;
+//        File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyAPPImages");
+//        if(imagesFolder.mkdirs()){
+//            image = new File(imagesFolder, imageFileName+".jpg");
+//        }
+            ; // <----
+
+//        Uri uriSavedImage = Uri.fromFile(image);
+//        imageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+//        File storageDir = new File(Environment.getExternalStorageDirectory(), "EthnoImages");
+//        storageDir.mkdirs(); // <----
+//        File image = new File(imagesFolder, "image_001.jpg");
+//        Uri uriSavedImage = Uri.fromFile(image);
+//        imageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+//        File storageDir = Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES);
+//        String path = Environment.getExternalStorageDirectory() + "/ethnomedia/"+imageFileName+".jpg";
+//        File file = new File(path);
+        final String appDirectoryName = "XYZ";
+        final File imageRoot = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageRoot      /* directory */
         );
         // Save a file: path for use with ACTION_VIEW intents
         currentPath = image.getAbsolutePath();
