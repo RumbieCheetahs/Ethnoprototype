@@ -12,7 +12,7 @@ public interface CategoryAssignedResourceDAO {
     @Query("SELECT * FROM CategoryAssignedResource")
     List<CategoryAssignedResource> getAll();
 
-    @Query("SELECT * FROM CategoryAssignedResource WHERE video_id IN (:Ids)")
+    @Query("SELECT * FROM CategoryAssignedResource WHERE cat_res_id IN (:Ids)")
     List<CategoryAssignedResource> loadAllByIds(int[] Ids);
 
 //    @Query("SELECT * FROM UncategorisedImage WHERE first_name LIKE :first AND " +

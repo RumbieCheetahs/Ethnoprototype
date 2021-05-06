@@ -16,18 +16,14 @@ import com.example.ethnoprototype.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
     public interface OnItemClickListener{
-        public void onItemClick(UnCategorizedVideo video);
+        void onItemClick(UnCategorizedVideo video);
     }
 
-    private OnItemClickListener listener ;
-    private Context context;
+    private final OnItemClickListener listener ;
+    private final Context context;
 
     private final List<UnCategorizedVideo> mValues;
 

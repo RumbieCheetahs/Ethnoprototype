@@ -11,10 +11,7 @@ import com.example.ethnoprototype.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyCategorizedItemsViewAdapter extends RecyclerView.Adapter<MyCategorizedItemsViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;

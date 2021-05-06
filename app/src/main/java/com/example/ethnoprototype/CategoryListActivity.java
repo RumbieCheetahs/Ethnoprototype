@@ -37,18 +37,18 @@ public class CategoryListActivity extends AppCompatActivity {
     AppDatabase db;
 
     @Override
-    public void onCreate(Bundle savedInstanceState,  PersistableBundle persistentState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_category_list_activity_list);
 
-        Toast.makeText(getBaseContext(),"Tapinda muActivity",Toast.LENGTH_LONG).show();
+       // Toast.makeText(getBaseContext(),"Tapinda muActivity",Toast.LENGTH_LONG).show();
         recyclerView = findViewById(R.id.categoryList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         db = AppDatabase.getAppDatabase(getBaseContext());
         List<CategoryAndResource> assignedResources = db.categoryAndResourceDAO().getAll();
 
         HashSet<String> categorySet = new HashSet<>();
-        Toast.makeText(getBaseContext(),"Resource List size"+ assignedResources.size(),Toast.LENGTH_LONG).show();
+       // Toast.makeText(getBaseContext(),"Resource List size"+ assignedResources.size(),Toast.LENGTH_LONG).show();
         for(CategoryAndResource resource : assignedResources){
             categorySet.add(resource.name);
             Log.d("Resource name",resource.name);
@@ -62,16 +62,20 @@ public class CategoryListActivity extends AppCompatActivity {
             //Get all the categoriesIds == category
                 //Get all CategoryAssignedResources
                 // Send to next activity
+
+//                Toast.makeText(getBaseContext(),"Selected category is "+category,Toast.LENGTH_LONG).show();
                 List<Integer> ids = new ArrayList<>();
                 for(CategoryAndResource resource : assignedResources){
                     if(resource.name.trim().equalsIgnoreCase(category)){
                         ids.add(resource.catID);
                     }
                 }
+
                int [] idArray = new int[ids.size()];
                 for(int i = 0; i<idArray.length; i++){
                     idArray[i] = ids.get(i);
                 }
+
                 Intent intent = new Intent(CategoryListActivity.this, ShowResourceActivity.class);
                 intent.putExtra("ids",idArray);
                 startActivity(intent);
@@ -80,6 +84,18 @@ public class CategoryListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+//            categories.add("Animals");
+//            categories.add("Bad Luck");
+//            categories.add("Bad Witchcraft");
+//            categories.add("Beauty");
+//            categories.add("Construction");
+//            categories.add("Food");
+//            categories.add("Household");
+//            categories.add("Natural Medicine");
+//            categories.add("Perfume");
+//            categories.add("Poisonous");
+//            categories.add("Rituals");
+//            categories.add("Good Witchcraft");
 
 
 

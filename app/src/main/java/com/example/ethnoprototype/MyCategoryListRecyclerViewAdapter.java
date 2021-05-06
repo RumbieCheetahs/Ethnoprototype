@@ -12,15 +12,12 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCategoryListRecyclerViewAdapter.ViewHolder> {
 
     public interface OnItemClickListener{
-        public void onItemClick(String video);
+        void onItemClick(String video);
     }
+
     private MyCategoryListRecyclerViewAdapter.OnItemClickListener listener ;
     private final List<String> mValues;
 
@@ -40,6 +37,7 @@ public class MyCategoryListRecyclerViewAdapter extends RecyclerView.Adapter<MyCa
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position));
+        holder.bind(holder.mItem, listener);
     }
 
     @Override
