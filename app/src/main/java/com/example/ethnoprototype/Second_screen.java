@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -89,7 +90,7 @@ public class Second_screen extends AppCompatActivity {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "JPEG_" + timeStamp + "_"+".jpg";
             File image = null;
-            File imagesFolder = new File(Environment.getExternalStorageDirectory(), "EthnoMedia");
+            File imagesFolder = new File(getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "EthnoMedia");
             boolean b = imagesFolder.mkdirs(); // <----
             image = new File(imagesFolder, imageFileName);
 
@@ -131,6 +132,13 @@ public class Second_screen extends AppCompatActivity {
     }
 
     private void addToGallery() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+
+
 //        Intent galleryIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 //        Toast.makeText(getBaseContext(),"Current path of the file : " +currentPath,Toast.LENGTH_LONG).show();
 //        File f = new File(currentPath);

@@ -20,6 +20,8 @@ public interface CategoryAssignedResourceDAO {
 //    User findByName(String first, String last);
 
 //    @Query("SELECT * FROM CategoryAssignedResource WHERE category")
+    @Query("Select * from CategoryAssignedResource where plantName like :searchTerm||'%'")
+    List<CategoryAssignedResource> searchByName(String searchTerm);
 
     @Insert
     void insertAll(CategoryAssignedResource... images);
