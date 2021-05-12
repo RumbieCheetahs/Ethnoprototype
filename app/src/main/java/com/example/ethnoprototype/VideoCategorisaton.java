@@ -94,7 +94,7 @@ public class VideoCategorisaton extends AppCompatActivity {
                     receivedVideo.category = true;
                     //Get image record
                     File file = FileUtils.getFile(getBaseContext(), imageURI);
-                    UnCategorizedImage image = appDatabase.imageDAO().getImageFromPath(file.getAbsolutePath());
+                    UnCategorizedImage image = appDatabase.imageDAO().getImageFromPath(imagePath);
                     //Assign category resource video and get the id back
                     CategoryAssignedResource categoryAssignedResource = new CategoryAssignedResource();
 //                    categoryAssignedResource.imageId = null;
@@ -126,7 +126,7 @@ public class VideoCategorisaton extends AppCompatActivity {
             }
         });
 
-        plantImage = (ImageButton) findViewById(R.id.imageButton2);
+        plantImage = findViewById(R.id.imageButton2);
         plantImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,8 +241,19 @@ public class VideoCategorisaton extends AppCompatActivity {
             Uri sourceUri = data.getData();
             String path = sourceUri.getPath() ;// "/mnt/sdcard/FileName.mp3"
             plantImage.setImageURI(sourceUri);
-            imagePath = sourceUri.getPath();
+           // imagePath = sourceUri.getPath();
+//            Toast.makeText(getBaseContext(),"Image path is "+imagePath,Toast.LENGTH_LONG).show();
             imageURI = sourceUri;
+            File file = FileUtils.getFile(getBaseContext(), sourceUri);
+            String absolutePath = file.getAbsolutePath();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                String[] split = absolutePath.split(":");
+                imagePath = "/external/images/media/" + split[1];
+            }else {
+                imagePath = absolutePath;
+            }
+//            Toast.makeText(getBaseContext(),"Image uri is "+ "/external/images/media/"+split[1],Toast.LENGTH_LONG).show();
+
         }
     }
 }

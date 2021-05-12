@@ -1,11 +1,15 @@
 package com.example.ethnoprototype;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -23,7 +27,9 @@ import com.example.ethnoprototype.data.UnCategorizedImage;
 import com.example.ethnoprototype.data.UnCategorizedVideo;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -90,18 +96,63 @@ public class Second_screen extends AppCompatActivity {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "JPEG_" + timeStamp + "_"+".jpg";
             File image = null;
-            File imagesFolder = new File(getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "EthnoMedia");
-            boolean b = imagesFolder.mkdirs(); // <----
-            image = new File(imagesFolder, imageFileName);
+//         File imagesFolder = new File( getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "EthnoMedia");
+////            File imagesFolder = new File(MediaStore.Images, "EthnoMedia");
+//            boolean b = imagesFolder.mkdirs(); // <----
+//            image = new File(imagesFolder, imageFileName);
 
 
 //            Uri uriSavedImage = Uri.fromFile(image);
-            Uri photoURI =  FileProvider.getUriForFile(this,
-                       BuildConfig.APPLICATION_ID + ".provider",
-                       image);
-            currentPath = image.getAbsolutePath();
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//            Uri photoURI =  FileProvider.getUriForFile(this,
+//                       BuildConfig.APPLICATION_ID + ".provider",
+//                       image);
+//            currentPath = image.getAbsolutePath();
+//            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+            try {
+                boolean saved;
+                OutputStream fos;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    ContentResolver resolver = getBaseContext().getContentResolver();
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, imageFileName);
+                    contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+                    contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "EthnoMedia");
+                    Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                    fos = resolver.openOutputStream(imageUri);
+
+                    image = new File(imageUri.getPath());
+                    currentPath = image.getAbsolutePath();
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                } else {
+                    String imagesDir = Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_DCIM).toString() + File.separator + "EthnoMedia";
+                    File file = new File(imagesDir);
+
+                    if (!file.exists()) {
+                        file.mkdir();
+                    }
+
+                    image = new File(imagesDir, imageFileName + ".png");
+                    fos = new FileOutputStream(image);
+                    Uri photoURI =  FileProvider.getUriForFile(this,
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            image);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+                }
+
+//                saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+
+                fos.flush();
+                fos.close();
+            }catch (IOException e){
+                Log.e("PHOTO ERROR",e.getLocalizedMessage());
+            }
 
 
             //OLD IMPLEMENTATION
@@ -215,6 +266,16 @@ public class Second_screen extends AppCompatActivity {
 
                 } else {
 
+//                    Bundle extras = data.getExtras();
+//                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//                    String imageFileName = "JPEG_" + timeStamp + "_"+".jpg";
+
+//                    try {
+//                        saveImage(imageBitmap,imageFileName);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                     UnCategorizedImage image = new UnCategorizedImage();
                     image.imagePath = currentPath;
                     image.imageLatitude = latitude;
@@ -297,5 +358,37 @@ public class Second_screen extends AppCompatActivity {
          //   locationService.showSettingsAlert();
             return null;
         }
+    }
+
+    private void saveImage(Bitmap bitmap, @NonNull String name) throws IOException {
+        boolean saved;
+        OutputStream fos;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentResolver resolver = getBaseContext().getContentResolver();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + "EthnoMedia");
+            Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            fos = resolver.openOutputStream(imageUri);
+        } else {
+            String imagesDir = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DCIM).toString() + File.separator + "EthnoMedia";
+            File file = new File(imagesDir);
+
+            if (!file.exists()) {
+                file.mkdir();
+            }
+
+            File image = new File(imagesDir, name + ".png");
+            fos = new FileOutputStream(image);
+
+        }
+
+        saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+
+        fos.flush();
+        fos.close();
     }
 }

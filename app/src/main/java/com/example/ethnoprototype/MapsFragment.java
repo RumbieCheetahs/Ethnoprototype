@@ -21,6 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapsFragment extends AppCompatActivity implements OnMapReadyCallback{
@@ -42,7 +43,7 @@ public class MapsFragment extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
-
+        List<LatLng> locations = new ArrayList<>();
         List<CategoryAssignedResource> resourceList = AppDatabase.getAppDatabase(MapsFragment.this).assignedResourceDAO().getAll();
         if(resourceList.size() != 0) {
             for (CategoryAssignedResource resource : resourceList) {
@@ -50,14 +51,11 @@ public class MapsFragment extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.addMarker(new MarkerOptions()
                         .position(latLng)
                         .title(""+resource.plantName)).showInfoWindow();
+                locations.add(latLng);
             }
         }
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney")).showInfoWindow();
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        LatLng sydney = locations.get(0);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(locations.get(0)));
     }
 
 //    @Nullable
