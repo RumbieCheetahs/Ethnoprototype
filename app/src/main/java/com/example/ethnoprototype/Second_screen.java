@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.example.ethnoprototype.data.AppDatabase;
 import com.example.ethnoprototype.data.UnCategorizedImage;
 import com.example.ethnoprototype.data.UnCategorizedVideo;
-import com.karumi.dexter.BuildConfig;
+import com.example.ethnoprototype.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -220,6 +220,7 @@ public class Second_screen extends AppCompatActivity {
                 Uri videoURI = FileProvider.getUriForFile(this,
                         BuildConfig.APPLICATION_ID + ".provider",
                         videoFile);
+
                 takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, videoURI);
 //                Toast.makeText(getBaseContext(), "URI : "+ videoURI.toString(),Toast.LENGTH_LONG).show();
                 startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);

@@ -85,8 +85,8 @@
             android:layout_below="@id/layout">
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -102,7 +102,7 @@
                 <ImageView
                     android:id="@+id/imageViewGoodWitchcraft"
                     android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/good_witchcraft"
                     tools:layout_editor_absoluteX="40dp"
@@ -110,8 +110,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -126,8 +126,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewBadWtchcraft"
-                    android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/bad_witchcraft"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="234dp" />
@@ -135,8 +135,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -152,7 +152,7 @@
                 <ImageView
                     android:id="@+id/imageViewNaturalMed"
                     android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/natural_healing"
                     tools:layout_editor_absoluteX="379dp"
@@ -161,8 +161,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -178,7 +178,7 @@
                 <ImageView
                     android:id="@+id/imageViewFood"
                     android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/food"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -197,8 +197,8 @@
             android:layout_below="@id/firstrow">
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -213,16 +213,16 @@
 
                 <ImageView
                     android:id="@+id/imageViewPerfume"
-                    android:layout_width="50dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/perfume"
                     tools:layout_editor_absoluteX="40dp"
                     tools:layout_editor_absoluteY="235dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -238,15 +238,15 @@
                 <ImageView
                     android:id="@+id/imageViewBeauty"
                     android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/beauty"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="234dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -261,8 +261,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewHousehold"
-                    android:layout_width="50dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/household"
                     tools:layout_editor_absoluteX="379dp"
                     tools:layout_editor_absoluteY="237dp" />
@@ -270,8 +270,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -286,8 +286,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewConstruction"
-                    android:layout_width="50dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/construction"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -306,8 +306,8 @@
             android:layout_below="@id/secondRow">
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -323,15 +323,15 @@
                 <ImageView
                     android:id="@+id/imageViewAnimals"
                     android:layout_width="61dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/animals"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="234dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -347,7 +347,7 @@
                 <ImageView
                     android:id="@+id/imageViewPoisonous"
                     android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/poisonous"
                     tools:layout_editor_absoluteX="379dp"
                     tools:layout_editor_absoluteY="237dp" />
@@ -355,8 +355,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -372,7 +372,7 @@
                 <ImageView
                     android:id="@+id/imageViewBadLuck"
                     android:layout_width="60dp"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/bad_luck"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -380,8 +380,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -397,7 +397,7 @@
                 <ImageView
                     android:id="@+id/imageViewRituals"
                     android:layout_width="60dp"
-                    android:layout_height="89dp"
+                    android:layout_height="100dp"
                     app:srcCompat="@drawable/rituals"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />

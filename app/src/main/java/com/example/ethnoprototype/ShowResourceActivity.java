@@ -61,8 +61,12 @@ public class ShowResourceActivity extends AppCompatActivity {
 //            Toast.makeText(getBaseContext(),"Resource list size" + resourceList.size(),Toast.LENGTH_LONG).show();
             currentResource = resourceList.get(0);
             currentlyLoaded = 0;
-            Uri imageuri = Uri.parse(currentResource.imageId.imagePath);
-            imageView.setImageURI(imageuri);
+            if(Uri.parse(currentResource.imageId.imagePath)!=null) {
+                Uri imageuri = Uri.parse(currentResource.imageId.imagePath);
+                imageView.setImageURI(imageuri);
+            }else{
+                Toast.makeText(getBaseContext(),"Could not load image",Toast.LENGTH_LONG).show();
+            }
             textView.setText(currentResource.plantName);
             Uri uri = Uri.parse(currentResource.videoId.path);
             video.setVideoURI(uri);
