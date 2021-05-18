@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.ethnoprototype.data.AppDatabase;
 import com.example.ethnoprototype.data.UnCategorizedImage;
 import com.example.ethnoprototype.data.UnCategorizedVideo;
+import com.karumi.dexter.BuildConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,7 +53,7 @@ public class Second_screen extends AppCompatActivity {
         btnAssignCategories = findViewById(R.id.btn_categories);
         btnCaptureImage = findViewById(R.id.btn_camera);
         btnCaptureVideo = findViewById(R.id.btn_video);
-        btnCategoriesList = findViewById(R.id.button_category_list);
+
         btnAssignCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,12 +76,7 @@ public class Second_screen extends AppCompatActivity {
             }
         });
 
-        btnCategoriesList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Second_screen.this, CategoryListActivity.class));
-            }
-        });
+
         locationService = new LocationService(Second_screen.this);
         db = AppDatabase.getAppDatabase(Second_screen.this);
 
