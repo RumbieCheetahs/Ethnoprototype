@@ -12,43 +12,47 @@
 
     <Button
         android:id="@+id/button_category_list"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
         android:padding="16dp"
         android:text="@string/text_categorised"
-        android:textSize="24sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchbycategory" />
 
     <Button
         android:id="@+id/searchbyname"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
         android:layout_marginTop="24dp"
         android:drawableStart="@android:drawable/ic_menu_search"
         android:padding="16dp"
         android:text="@string/search_by_name"
-        android:textSize="24sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/searchbycategory"
-        app:layout_constraintEnd_toEndOf="@+id/searchbycategory"
-        app:layout_constraintStart_toStartOf="@+id/searchbycategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </Button>
 
     <Button
         android:id="@+id/searchbycategory"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="507dp"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="120dp"
         android:padding="16dp"
         android:text="@string/search_by_category"
-        android:textSize="24sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchbyname">
 
