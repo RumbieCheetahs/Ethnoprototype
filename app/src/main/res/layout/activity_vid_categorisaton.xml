@@ -12,29 +12,31 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center">
+            android:padding="24dp">
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 style="@android:style/Widget.Holo.Light.ImageButton"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/tree"
                 tools:ignore="ContentDescription" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/loginUsernameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
                 android:hint="@string/plantname"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton2">
 
@@ -53,8 +55,8 @@
 
             <VideoView
                 android:id="@+id/videoView2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="250dp"
+                android:layout_height="125dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toTopOf="@id/buttonPlay"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,8 +67,8 @@
 
             <Button
                 android:id="@+id/buttonPlay"
-                android:layout_width="84dp"
-                android:layout_height="39dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="7dp"
                 android:text="Play"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +89,7 @@
             android:layout_below="@id/layout">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -103,7 +105,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewGoodWitchcraft"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/good_witchcraft"
@@ -112,7 +114,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -128,7 +130,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewBadWtchcraft"
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/bad_witchcraft"
                     tools:layout_editor_absoluteX="210dp"
@@ -137,7 +139,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -153,7 +155,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewNaturalMed"
-                    android:layout_width="60dp"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/natural_healing"
@@ -163,7 +165,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -179,7 +181,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewFood"
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/food"
                     tools:layout_editor_absoluteX="540dp"
@@ -199,7 +201,7 @@
             android:layout_below="@id/firstrow">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -215,7 +217,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewPerfume"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/perfume"
                     tools:layout_editor_absoluteX="40dp"
@@ -223,7 +225,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -239,7 +241,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewBeauty"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/beauty"
                     tools:layout_editor_absoluteX="210dp"
@@ -247,7 +249,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -263,7 +265,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewHousehold"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/household"
                     tools:layout_editor_absoluteX="379dp"
@@ -272,7 +274,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -288,8 +290,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewConstruction"
-                    android:layout_width="60dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
                     app:srcCompat="@drawable/construction"
                     tools:layout_editor_absoluteX="540dp"
                     tools:layout_editor_absoluteY="238dp" />
@@ -308,7 +310,7 @@
             android:layout_below="@id/secondRow">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -324,7 +326,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewAnimals"
-                    android:layout_width="61dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/animals"
                     tools:layout_editor_absoluteX="210dp"
@@ -332,7 +334,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -348,7 +350,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewPoisonous"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/poisonous"
                     tools:layout_editor_absoluteX="379dp"
@@ -357,7 +359,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -373,7 +375,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewBadLuck"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/bad_luck"
                     tools:layout_editor_absoluteX="540dp"
@@ -382,7 +384,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -398,7 +400,7 @@
 
                 <ImageView
                     android:id="@+id/imageViewRituals"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"
                     app:srcCompat="@drawable/rituals"
                     tools:layout_editor_absoluteX="540dp"
@@ -421,8 +423,8 @@
             <ImageButton
                 android:id="@+id/imageButtonSave"
                 style="@android:style/Widget.ImageButton"
-                android:layout_width="94dp"
-                android:layout_height="92dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:backgroundTint="#FFFFFF"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"

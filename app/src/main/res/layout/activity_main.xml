@@ -12,31 +12,33 @@
     <ImageButton
         android:id="@+id/btn_paraecologist"
         style="@android:style/Widget.ImageButton"
-        android:layout_width="match_parent"
-        android:layout_height="91dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:adjustViewBounds="false"
+        android:background="?android:attr/selectableItemBackground"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="?android:attr/selectableItemBackground"
         app:srcCompat="@drawable/paraecologist" />
 
     <Button
         android:id="@+id/btn_visitor"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/text_visitor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_paraecologist" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_paraecologist"
+        app:layout_constraintVertical_bias="0.396" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

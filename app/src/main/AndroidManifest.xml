@@ -48,21 +48,21 @@
         <activity android:name=".SearchByName" />
         <activity
             android:name=".UncategorisedItemsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity android:name=".VisitorPage" />
         <activity
             android:name=".Second_screen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity android:name=".CategoryListActivity" />
         <activity
             android:name=".VideoCategorisaton"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MapsFragment"
         />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
